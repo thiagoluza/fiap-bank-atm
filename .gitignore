@@ -1,1 +1,6 @@
-target/**
+target/
+*.db
+*.class
+.idea/
+*.iml
+.vscode/

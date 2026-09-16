@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.fiap.bank</groupId>
+        <artifactId>fiap-bank-atm</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>atm-application</artifactId>
+    <packaging>jar</packaging>
+
+    <name>atm-application</name>
+    <description>
+        Camada de Aplicação (orquestração de casos de uso). Depende exclusivamente
+        do módulo de domínio. Expõe DTOs (Java Records) para o mundo externo e
+        nunca devolve entidades de domínio nos métodos de negócio expostos
+        (exceto o método de compatibilidade getCurrentAccount(), documentado
+        no próprio AtmService, exigido pelo contrato imutável do frontend Swing legado).
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fiap.bank</groupId>
+            <artifactId>atm-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

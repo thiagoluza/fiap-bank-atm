@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.fiap.bank</groupId>
+        <artifactId>fiap-bank-atm</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>atm-presentation</artifactId>
+    <packaging>jar</packaging>
+
+    <name>atm-presentation</name>
+    <description>
+        Camada de Apresentação (Java Swing) - 100% intocada em relação ao
+        projeto legado, apenas movida fisicamente para este módulo.
+
+        REGRA DE ISOLAMENTO (invólavel): esta pom.xml enxerga única e
+        exclusivamente o módulo "application". NÃO existe aqui nenhuma tag
+        &lt;dependency&gt; apontando para atm-domain ou atm-infrastructure.
+        O compilador ainda resolve com sucesso os tipos
+        com.fiap.bank.atm.domain.model.Account/Transaction e as exceções de
+        com.fiap.bank.atm.domain.exception (usados pela tela legada, que não
+        pôde ser alterada) porque o Maven propaga transitivamente a
+        dependência application -> domain. Isso preserva a letra da regra
+        (isolamento físico no pom.xml da apresentação) sem quebrar a
+        compilação do frontend legado.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fiap.bank</groupId>
+            <artifactId>atm-application</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
